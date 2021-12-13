@@ -1,5 +1,6 @@
-import 'package:deli_meals/data/dummy-data.dart';
 import 'package:flutter/material.dart';
+
+import '../data/dummy-data.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
@@ -63,13 +64,18 @@ class MealDetailScreen extends StatelessWidget {
             buildContainer(
               ListView.builder(
                 itemCount: selectedMeal.steps.length,
-                itemBuilder: (ctx, index) => ListTile(
-                  leading: CircleAvatar(
-                    child: Text('# ${(index + 1)}'),
-                  ),
-                  title: Text(
-                    selectedMeal.steps[index],
-                  ),
+                itemBuilder: (ctx, index) => Column(
+                  children: [
+                    ListTile(
+                      leading: CircleAvatar(
+                        child: Text('# ${(index + 1)}'),
+                      ),
+                      title: Text(
+                        selectedMeal.steps[index],
+                      ),
+                    ),
+                    Divider(),
+                  ],
                 ),
               ),
             ),
