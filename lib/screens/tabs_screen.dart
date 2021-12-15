@@ -3,15 +3,24 @@ import 'package:flutter/material.dart';
 import 'categories_screen.dart';
 import 'favorites_screen.dart';
 
+final String catTxt = 'Categories';
+final String favTxt = 'Favorites';
+
 class TabScreen extends StatefulWidget {
   @override
   _TabScreenState createState() => _TabScreenState();
 }
 
 class _TabScreenState extends State<TabScreen> {
-  final List<Widget> _pages = [
-    CategoriesScreen(),
-    FavoritesScreen(),
+  final List<Map<String, dynamic>> _pages = [
+    {
+      'title': catTxt,
+      'page': CategoriesScreen(),
+    },
+    {
+      'title': favTxt,
+      'page': FavoritesScreen(),
+    },
   ];
 
   int _selectedPageIndex = 0;
@@ -26,9 +35,12 @@ class _TabScreenState extends State<TabScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Meals'),
+        title: Text(_pages[_selectedPageIndex]['title']),
       ),
-      body: _pages[_selectedPageIndex],
+      drawer: Drawer(
+        child: Text('The drawer'),
+      ),
+      body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
         backgroundColor: Theme.of(context).primaryColor,
@@ -40,12 +52,12 @@ class _TabScreenState extends State<TabScreen> {
           BottomNavigationBarItem(
             backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(Icons.category),
-            title: Text('Categories'),
+            title: Text(catTxt),
           ),
           BottomNavigationBarItem(
             backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(Icons.star),
-            title: Text('Favorites'),
+            title: Text(favTxt),
           ),
         ],
       ),
