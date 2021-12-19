@@ -15,6 +15,20 @@ class _FiltersScreenState extends State<FiltersScreen> {
   var _vegan = false;
   var _lactoseFree = false;
 
+  Widget _buildSwitchListTile(
+    String title,
+    String subtitle,
+    bool currentValue,
+    Function(bool)? updateValue,
+  ) {
+    return SwitchListTile(
+      title: Text(title),
+      subtitle: Text(subtitle),
+      value: currentValue,
+      onChanged: updateValue,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,13 +48,43 @@ class _FiltersScreenState extends State<FiltersScreen> {
           Expanded(
             child: ListView(
               children: [
-                SwitchListTile(
-                  title: Text('Gluten-free'),
-                  subtitle: Text('Only include gluten-free meals'),
-                  value: _glutenFree,
-                  onChanged: (newValue) {
+                _buildSwitchListTile(
+                  'Gluten free',
+                  'Only include gluten-free meals',
+                  _glutenFree,
+                  (newValue) {
                     setState(() {
                       _glutenFree = newValue;
+                    });
+                  },
+                ),
+                _buildSwitchListTile(
+                  'Lactose free',
+                  'Only include lactose-free meals',
+                  _lactoseFree,
+                  (newValue) {
+                    setState(() {
+                      _lactoseFree = newValue;
+                    });
+                  },
+                ),
+                _buildSwitchListTile(
+                  'Vegetarian',
+                  'Only include vegetarian meals',
+                  _vegetarian,
+                  (newValue) {
+                    setState(() {
+                      _vegetarian = newValue;
+                    });
+                  },
+                ),
+                _buildSwitchListTile(
+                  'Vegan',
+                  'Only include vegan meals',
+                  _vegan,
+                  (newValue) {
+                    setState(() {
+                      _vegan = newValue;
                     });
                   },
                 ),
