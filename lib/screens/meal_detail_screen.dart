@@ -15,24 +15,28 @@ class MealDetailScreen extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.subtitle1,
+        style: Theme.of(context).textTheme.titleMedium,
       ),
     );
   }
 
-  Widget buildContainer(Widget child) {
+  Widget buildContainer({
+    required Widget child,
+    required BuildContext context,
+  }) {
+    final _width = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(
-          color: Colors.grey,
+          color: Color.fromARGB(255, 214, 214, 214),
         ),
         borderRadius: BorderRadius.circular(10),
       ),
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(10),
       height: 120,
-      width: 300,
+      width: _width * 0.88,
       child: child,
     );
   }
@@ -53,7 +57,8 @@ class MealDetailScreen extends StatelessWidget {
             ),
             buildSectionTitle(context, 'Ingredients'),
             buildContainer(
-              ListView.builder(
+              context: context,
+              child: ListView.builder(
                 itemCount: selectedMeal.ingredients.length,
                 itemBuilder: (ctx, index) => Card(
                   color: Theme.of(context).colorScheme.secondary,
@@ -67,7 +72,8 @@ class MealDetailScreen extends StatelessWidget {
             ),
             buildSectionTitle(context, 'Steps'),
             buildContainer(
-              ListView.builder(
+              context: context,
+              child: ListView.builder(
                 itemCount: selectedMeal.steps.length,
                 itemBuilder: (ctx, index) => Column(
                   children: [

@@ -81,16 +81,16 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.pink,
         hintColor: Colors.amber,
-        canvasColor: Color.fromRGBO(255, 254, 229, 1),
+        canvasColor: const Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
-              bodyText1: TextStyle(
-                color: Color.fromRGBO(20, 51, 51, 1),
+              bodyLarge: const TextStyle(
+                color: Color.fromRGBO(114, 165, 165, 1),
               ),
-              bodyText2: TextStyle(
-                color: Color.fromRGBO(20, 51, 51, 1),
+              bodyMedium: const TextStyle(
+                color: Color.fromRGBO(93, 187, 187, 1),
               ),
-              subtitle1: TextStyle(
+              titleMedium: const TextStyle(
                 fontSize: 20,
                 fontFamily: 'RobotoCondensed',
                 fontWeight: FontWeight.bold,
